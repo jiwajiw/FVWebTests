@@ -15,6 +15,38 @@ class LoginPageLocators(BasePage):
     GOOGLE_LINK = (By.XPATH, '//a[@data-l="t,google"]')
     YANDEX_LINK = (By.XPATH, '//a[@data-l="t,yandex"]')
     APPLE_LINK = (By.XPATH, '//a[@data-l="t,apple"]')
+    ERROR_TEXT = (By.CSS_SELECTOR, "span[class*='LoginForm-module__error']")
 
 class LoginPageHelper(BasePage):
-    pass
+    def __init__(self, driver):
+        self.driver = driver
+        self.check_page()
+
+    def check_page(self):
+        self.find_element(LoginPageLocators.LOGIN_TAB)
+        self.find_element(LoginPageLocators.QR_TAB)
+        self.find_element(LoginPageLocators.LOGIN_FIELD)
+        self.find_element(LoginPageLocators.PASSWORD_FIELD)
+        self.find_element(LoginPageLocators.LOGIN_BUTTON)
+        self.find_element(LoginPageLocators.QR_BUTTON)
+        self.find_element(LoginPageLocators.CAN_NOT_ENTER_BUTTON)
+        self.find_element(LoginPageLocators.REGISTRATION_BUTTON)
+        self.find_element(LoginPageLocators.VK_LINK)
+        self.find_element(LoginPageLocators.MAILRU_LINK)
+        self.find_element(LoginPageLocators.GOOGLE_LINK)
+        self.find_element(LoginPageLocators.YANDEX_LINK)
+        self.find_element(LoginPageLocators.APPLE_LINK)
+
+    def click_login(self):
+        self.find_element(LoginPageLocators.LOGIN_BUTTON).click()
+
+    def get_error_text(self):
+        return self.find_element(LoginPageLocators.ERROR_TEXT).text
+
+    def enter_login(self, login):
+        login_field = self.find_element(LoginPageLocators.LOGIN_FIELD)
+        login_field.send_keys(login)
+
+    def enter_password_field(self, password):
+        password_field = self.find_element(LoginPageLocators.PASSWORD_FIELD)
+        password_field.send_keys(password)
