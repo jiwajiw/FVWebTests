@@ -92,3 +92,8 @@ class LoginPageHelper(BasePage):
     @allure.step('Дождаться появления кнопки восстановления')
     def wait_recovery(self):
         return WebDriverWait(self.driver, 10).until(expected_conditions.element_to_be_clickable(LoginPageLocators.RESTORE_LINK))
+
+    @allure.step('Перейти к регистрации')
+    def click_registration(self):
+        self.attach_screenshot()
+        self.find_element(LoginPageLocators.REGISTRATION_BUTTON).click()
