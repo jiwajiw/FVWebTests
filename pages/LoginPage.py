@@ -1,11 +1,11 @@
 import allure
-from pages.BasePage import BasePage
+from pages.BasePage import BasePageHelper
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.by import By
 
-class LoginPageLocators(BasePage):
+class LoginPageLocators(BasePageHelper):
     LOGIN_TAB = (By.XPATH, '//a[@data-l="t,login_tab"]')
     QR_TAB = (By.XPATH, '//a[@data-l="t,qr_tab"]')
     LOGIN_FIELD = (By.ID, 'field_email')
@@ -23,7 +23,7 @@ class LoginPageLocators(BasePage):
     ERROR_TEXT = (By.CSS_SELECTOR, "span[class*='LoginForm-module__error']")
     GO_BACK_BUTTON = (By.XPATH, '//button[.//span[text()="Отмена"]]')
 
-class LoginPageHelper(BasePage):
+class LoginPageHelper(BasePageHelper):
     def __init__(self, driver):
         self.driver = driver
         self.check_page()
